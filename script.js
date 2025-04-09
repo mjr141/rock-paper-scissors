@@ -1,6 +1,4 @@
-// console.log("Hello World!");
-
-// randomly pick rock, paper, or scissors (return as a string)
+// randomly pick rock/paper/scissors and return as string
 function getComputerChoice() {
   let randomInt = Math.floor(Math.random() * 3); // generate a random integer from 0 to 2
   let choice;
@@ -14,14 +12,12 @@ function getComputerChoice() {
   return choice;
 }
 
-// console.log(getComputerChoice());
-
+// get user pick of rock/paper/scissors
 function getHumanChoice() {
   let choice = prompt("choose rock, paper, or scissors!");
-  return choice;
+  return choice.toLowerCase();
 }
 
-// console.log(getHumanChoice());
-
+// global variables to track scores
 let humanScore = 0;
 let computerScore = 0;
