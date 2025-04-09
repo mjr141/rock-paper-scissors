@@ -38,3 +38,48 @@ function playRound(humanChoice, computerChoice) {
       break;
   }
 }
+
+// function that takes both rps picks and checks if user wins (returns 0) loses (returns 1) draws (returns 2) or input something weird (returns 3)
+function checkWinner (humanChoice, computerChoice) {
+  switch(humanChoice) {
+    case "rock":
+      if (computerChoice === "scissors") {
+        return 0;
+        break;
+      } else if (computerChoice === "paper") {
+        return 1;
+        break;
+      } else {
+        return 2;
+        break;
+      }
+    
+    case "paper":
+      if (computerChoice === "rock") {
+        return 0;
+        break;
+      } else if (computerChoice === "scissors") {
+        return 1;
+        break;
+      } else {
+        return 2;
+        break;
+      }
+  
+    case "scissors":
+      if (computerChoice === "paper") {
+        return 0;
+        break;
+      } else if (computerChoice === "rock") {
+        return 1;
+        break;
+      } else {
+        return 2;
+        break;
+      }
+
+    default:
+      return 3;
+      break;
+  }
+}
