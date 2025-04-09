@@ -95,10 +95,13 @@ function playGame() {
   while (roundCount <= 5) {
     humanChoice = getHumanChoice();
     computerChoice = getComputerChoice();
-    console.log(`round ${roundCount}!`)
+    console.log(`round ${roundCount}!`);
+    console.log(`user pick: ${humanChoice}`);
+    console.log(`computer pick: ${computerChoice}`);
     playRound(humanChoice, computerChoice);
     roundCount++;
   }
+  console.log(`final score: ${humanScore}-${computerScore}`)
 }
 
 playGame();
