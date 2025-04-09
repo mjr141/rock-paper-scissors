@@ -36,6 +36,8 @@ function playRound(humanChoice, computerChoice) {
     case 2:
       console.log(`draw! you both picked ${humanChoice}`)
       break;
+    case 3:
+      console.log(`you lose! '${humanChoice}' isn't a valid choice...`)
   }
 }
 
