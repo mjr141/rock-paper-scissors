@@ -22,6 +22,7 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
+// play a round and increment score accordingly
 function playRound(humanChoice, computerChoice) {
   let result = checkWinner(humanChoice, computerChoice) // helper function to pick the winner
   switch (result) {
@@ -41,7 +42,7 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-// function that takes both rps picks and checks if user wins (returns 0) loses (returns 1) draws (returns 2) or input something weird (returns 3)
+// function that takes both rps picks and checks if user wins (returns 0) loses (returns 1) draws (returns 2) or had input something weird (returns 3)
 function checkWinner (humanChoice, computerChoice) {
   switch(humanChoice) {
     case "rock":
@@ -85,3 +86,19 @@ function checkWinner (humanChoice, computerChoice) {
       break;
   }
 }
+
+// play 5 rounds and display scores
+function playGame() {
+  let humanChoice;
+  let computerChoice;
+  let roundCount = 1;
+  while (roundCount <= 5) {
+    humanChoice = getHumanChoice();
+    computerChoice = getComputerChoice();
+    console.log(`round ${roundCount}!`)
+    playRound(humanChoice, computerChoice);
+    roundCount++;
+  }
+}
+
+playGame();
