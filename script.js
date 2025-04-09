@@ -21,3 +21,20 @@ function getHumanChoice() {
 // global variables to track scores
 let humanScore = 0;
 let computerScore = 0;
+
+function playRound(humanChoice, computerChoice) {
+  let result = checkWinner(humanChoice, computerChoice) // helper function to pick the winner
+  switch (result) {
+    case 0:
+      console.log(`you win! ${humanChoice} beats ${computerChoice}`);
+      ++humanScore;
+      break;
+    case 1:
+      console.log(`you lose! ${computerChoice} beats ${humanChoice}`);
+      ++computerScore;
+      break;
+    case 2:
+      console.log(`draw! you both picked ${humanChoice}`)
+      break;
+  }
+}
