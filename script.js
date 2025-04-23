@@ -1,3 +1,7 @@
+const button = document.querySelector("button")
+
+button.addEventListener("click", (e) => playRound(e.target.innerText));
+
 function getComputerChoice() {
   let randomInt = Math.floor(Math.random() * 3); // generate a random integer from 0 to 2
   let choice;
@@ -11,16 +15,17 @@ function getComputerChoice() {
   return choice;
 }
 
-function getHumanChoice() {
+/* function getHumanChoice() {
   let choice = prompt("choose rock, paper, or scissors!");
   return choice.toLowerCase();
-}
+} */
 
 // global variables to be incremented accordingly
 let humanScore = 0;
 let computerScore = 0;
 
-function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice) {
+  const computerChoice = getComputerChoice();
   let result = checkWinner(humanChoice, computerChoice) // helper function to pick the winner
   switch (result) {
     case "win":
@@ -84,7 +89,7 @@ function checkWinner (humanChoice, computerChoice) {
   }
 }
 
-// play 5 rounds and display scores
+/* // play 5 rounds and display scores
 function playGame() {
   let humanChoice;
   let computerChoice;
@@ -101,4 +106,4 @@ function playGame() {
   console.log(`final score: ${humanScore}-${computerScore}`)
 }
 
-playGame();
+playGame(); */
