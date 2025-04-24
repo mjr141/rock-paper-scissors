@@ -1,6 +1,9 @@
-const button = document.querySelector("button")
+// const button = document.querySelector("button");
 
-button.addEventListener("click", (e) => playRound(e.target.innerText));
+const playButtons = document.querySelectorAll(".playButton");
+playButtons.forEach(button => button.addEventListener("click", (e) => playRound(e.target.id)));
+
+// button.addEventListener("click", (e) => playRound(e.target.innerText));
 
 function getComputerChoice() {
   let randomInt = Math.floor(Math.random() * 3); // generate a random integer from 0 to 2
