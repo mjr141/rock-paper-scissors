@@ -17,7 +17,7 @@ function getComputerChoice() {
 // global variables to be incremented accordingly
 let userScore = 0;
 let computerScore = 0;
-let roundCount = 1;
+let roundCount = 0;
 
 // putting initial scores in the scorecard
 const scoreCard = document.querySelector(".scoreCard");
@@ -27,36 +27,36 @@ let computerDisplayScore = document.createElement("p");
 scoreCard.appendChild(computerDisplayScore);
 let roundDisplayCount = document.createElement("p");
 scoreCard.appendChild(roundDisplayCount);
+/* let announcement = document.createElement("p");
+scoreCard.appendChild(announcement);
+*/
 updateScore();
 
 function updateScore() {
   userDisplayScore.textContent = `your score: ${userScore}`;
   computerDisplayScore.textContent = `computer score: ${computerScore}`;
-  // roundDisplayCount.textContent = `round: ${roundCount}`;
 }
 
 function playRound(humanChoice) {
   const computerChoice = getComputerChoice();
   let result = checkWinner(humanChoice, computerChoice) // helper function to pick the winner
+  ++roundCount;
   switch (result) {
     case "win":
       console.log(`you win! ${humanChoice} beats ${computerChoice}`);
       ++userScore;
-      updateScore()
       break;
     case "lose":
       console.log(`you lose! ${computerChoice} beats ${humanChoice}`);
       ++computerScore;
-      updateScore()
       break;
     case "tie":
       console.log(`tie! you both picked ${humanChoice}`)
-      updateScore()
       break;
     case "other":
       console.log(`you lose! '${humanChoice}' isn't a valid choice...`)
-      updateScore()
   }
+  updateScore();
 }
 
 // check who wins, return a different string according to the result
