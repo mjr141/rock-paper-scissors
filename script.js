@@ -15,9 +15,9 @@ function getComputerChoice() {
 }
 
 // global variables to be incremented accordingly
-let userScore = 0;
-let computerScore = 0;
-let roundCount = 0;
+let userScore;
+let computerScore;
+initScore();
 
 // putting initial scores in the scorecard
 const scoreCard = document.querySelector(".scoreCard");
@@ -25,21 +25,31 @@ let userDisplayScore = document.createElement("p");
 scoreCard.appendChild(userDisplayScore);
 let computerDisplayScore = document.createElement("p");
 scoreCard.appendChild(computerDisplayScore);
-let roundDisplayCount = document.createElement("p");
-scoreCard.appendChild(roundDisplayCount);
 let announcement = document.createElement("p");
 scoreCard.appendChild(announcement);
 updateScore();
 
+function initScore() {
+  userScore = 0;
+  computerScore = 0;
+}
+
 function updateScore() {
   userDisplayScore.textContent = `your score: ${userScore}`;
   computerDisplayScore.textContent = `computer score: ${computerScore}`;
+  if (userScore === 5) {
+    announcement.innerHTML = announcement.innerHTML + "<br/><br/>game over, you won! play again?";
+    initScore();
+  }
+  if (computerScore === 5) {
+    announcement.innerHTML = announcement.innerHTML + "<br/><br/>game over, you lost... try again?";
+    initScore();
+  }
 }
 
 function playRound(userChoice) {
   const computerChoice = getComputerChoice();
   let result = checkWinner(userChoice, computerChoice) // helper function to pick the winner
-  ++roundCount;
   switch (result) {
     case "win":
       // console.log(`you win! ${userChoice} beats ${computerChoice}`);
