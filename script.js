@@ -1,9 +1,5 @@
-// const button = document.querySelector("button");
-
 const playButtons = document.querySelectorAll(".playButton");
 playButtons.forEach(button => button.addEventListener("click", (e) => playRound(e.target.id)));
-
-// button.addEventListener("click", (e) => playRound(e.target.innerText));
 
 function getComputerChoice() {
   let randomInt = Math.floor(Math.random() * 3); // generate a random integer from 0 to 2
@@ -18,14 +14,26 @@ function getComputerChoice() {
   return choice;
 }
 
-/* function getHumanChoice() {
-  let choice = prompt("choose rock, paper, or scissors!");
-  return choice.toLowerCase();
-} */
-
 // global variables to be incremented accordingly
-let humanScore = 0;
+let userScore = 0;
 let computerScore = 0;
+let roundCount = 1;
+
+// putting initial scores in the scorecard
+const scoreCard = document.querySelector(".scoreCard");
+let userDisplayScore = document.createElement("p");
+scoreCard.appendChild(userDisplayScore);
+let computerDisplayScore = document.createElement("p");
+scoreCard.appendChild(computerDisplayScore);
+let roundDisplayCount = document.createElement("p");
+scoreCard.appendChild(roundDisplayCount);
+updateScore();
+
+function updateScore() {
+  userDisplayScore.textContent = `your score: ${userScore}`;
+  computerDisplayScore.textContent = `computer score: ${computerScore}`;
+  // roundDisplayCount.textContent = `round: ${roundCount}`;
+}
 
 function playRound(humanChoice) {
   const computerChoice = getComputerChoice();
@@ -33,17 +41,21 @@ function playRound(humanChoice) {
   switch (result) {
     case "win":
       console.log(`you win! ${humanChoice} beats ${computerChoice}`);
-      ++humanScore;
+      ++userScore;
+      updateScore()
       break;
     case "lose":
       console.log(`you lose! ${computerChoice} beats ${humanChoice}`);
       ++computerScore;
+      updateScore()
       break;
     case "tie":
       console.log(`tie! you both picked ${humanChoice}`)
+      updateScore()
       break;
     case "other":
       console.log(`you lose! '${humanChoice}' isn't a valid choice...`)
+      updateScore()
   }
 }
 
@@ -91,22 +103,3 @@ function checkWinner (humanChoice, computerChoice) {
       break;
   }
 }
-
-/* // play 5 rounds and display scores
-function playGame() {
-  let humanChoice;
-  let computerChoice;
-  let roundCount = 1;
-  while (roundCount <= 5) {
-    humanChoice = getHumanChoice();
-    computerChoice = getComputerChoice();
-    console.log(`round ${roundCount}!`);
-    console.log(`user pick: ${humanChoice}`);
-    console.log(`computer pick: ${computerChoice}`);
-    playRound(humanChoice, computerChoice);
-    roundCount++;
-  }
-  console.log(`final score: ${humanScore}-${computerScore}`)
-}
-
-playGame(); */
