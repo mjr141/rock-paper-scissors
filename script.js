@@ -27,9 +27,8 @@ let computerDisplayScore = document.createElement("p");
 scoreCard.appendChild(computerDisplayScore);
 let roundDisplayCount = document.createElement("p");
 scoreCard.appendChild(roundDisplayCount);
-/* let announcement = document.createElement("p");
+let announcement = document.createElement("p");
 scoreCard.appendChild(announcement);
-*/
 updateScore();
 
 function updateScore() {
@@ -37,31 +36,35 @@ function updateScore() {
   computerDisplayScore.textContent = `computer score: ${computerScore}`;
 }
 
-function playRound(humanChoice) {
+function playRound(userChoice) {
   const computerChoice = getComputerChoice();
-  let result = checkWinner(humanChoice, computerChoice) // helper function to pick the winner
+  let result = checkWinner(userChoice, computerChoice) // helper function to pick the winner
   ++roundCount;
   switch (result) {
     case "win":
-      console.log(`you win! ${humanChoice} beats ${computerChoice}`);
+      // console.log(`you win! ${userChoice} beats ${computerChoice}`);
+      announcement.textContent = `you win! ${userChoice} beats ${computerChoice}`;
       ++userScore;
       break;
     case "lose":
-      console.log(`you lose! ${computerChoice} beats ${humanChoice}`);
+      // console.log(`you lose! ${computerChoice} beats ${userChoice}`);
+      announcement.textContent = `you lose! ${computerChoice} beats ${userChoice}`;
       ++computerScore;
       break;
     case "tie":
-      console.log(`tie! you both picked ${humanChoice}`)
+      // console.log(`tie! you both picked ${userChoice}`)
+      announcement.textContent = `tie! you both picked ${userChoice}`;
       break;
     case "other":
-      console.log(`you lose! '${humanChoice}' isn't a valid choice...`)
+      // console.log(`you lose! '${userChoice}' isn't a valid choice...`);
+      announcement.textContent = `you lose! '${userChoice}' isn't a valid choice...`
   }
   updateScore();
 }
 
 // check who wins, return a different string according to the result
-function checkWinner (humanChoice, computerChoice) {
-  switch(humanChoice) {
+function checkWinner (userChoice, computerChoice) {
+  switch(userChoice) {
     case "rock":
       if (computerChoice === "scissors") {
         return "win";
