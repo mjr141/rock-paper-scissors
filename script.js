@@ -49,25 +49,23 @@ function updateScore() {
 
 function playRound(userChoice) {
   const computerChoice = getComputerChoice();
+  announcement.innerHTML = `you pick ${userChoice}... computer picks ${computerChoice}!`;
   let result = checkWinner(userChoice, computerChoice) // helper function to pick the winner
   switch (result) {
     case "win":
       // console.log(`you win! ${userChoice} beats ${computerChoice}`);
-      announcement.textContent = `you win! ${userChoice} beats ${computerChoice}`;
+      announcement.innerHTML = announcement.innerHTML + ` you win!`;
       ++userScore;
       break;
     case "lose":
       // console.log(`you lose! ${computerChoice} beats ${userChoice}`);
-      announcement.textContent = `you lose! ${computerChoice} beats ${userChoice}`;
+      announcement.innerHTML = announcement.innerHTML + ` you lose!`;
       ++computerScore;
       break;
     case "tie":
       // console.log(`tie! you both picked ${userChoice}`)
-      announcement.textContent = `tie! you both picked ${userChoice}`;
+      announcement.innerHTML = announcement.innerHTML + ` tie!`;
       break;
-    case "other":
-      // console.log(`you lose! '${userChoice}' isn't a valid choice...`);
-      announcement.textContent = `you lose! '${userChoice}' isn't a valid choice...`
   }
   updateScore();
 }
